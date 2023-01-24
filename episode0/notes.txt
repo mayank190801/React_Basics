@@ -1,0 +1,5 @@
+npx create-react-app <name of the folder>
+
+//components first letter should be capital
+
+//React render the components once only in the beginning, if you change any variable it doesn't affect shit
