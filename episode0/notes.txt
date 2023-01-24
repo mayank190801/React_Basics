@@ -1,5 +1,6 @@
 npx create-react-app <name of the folder>
 
 //components first letter should be capital
-
 //React render the components once only in the beginning, if you change any variable it doesn't affect shit
+//Delete a lot of files from src directory since they are of no use, make some code changes at some place, and what not
+//Should be extremely helpful if you think about it for sure
