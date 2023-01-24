@@ -1,10 +1,18 @@
 import "./App.css";
 import { AllObjects } from "./AllObjects";
 import { GasPlanets } from "./GasPlanets";
+import { StateStudy } from "./StateStudy";
+import { InputState } from "./InputState";
+import { ColorShifter } from "./ColorShifter";
+import { Counter } from "./Counter";
 
 function App() {
   return (
     <div className="App">
+      <Counter />
+      <ColorShifter />
+      <InputState />
+      <StateStudy />
       <Job money={123000} position="Senior SDE" company="Google" />
       <Job money={120003} position="Junior SDE" company="netflix" />
       <Job money={1230} position="Lower SDE" company="random" />
