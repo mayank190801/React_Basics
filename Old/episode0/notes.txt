@@ -4,3 +4,9 @@ npx create-react-app <name of the folder>
 //React render the components once only in the beginning, if you change any variable it doesn't affect shit
 //Delete a lot of files from src directory since they are of no use, make some code changes at some place, and what not
 //Should be extremely helpful if you think about it for sure
+
+
+//SO basically we were pretty good till react-routing came into the picture
+//But there have been insane many updates in it, which I definitely don't like plus too complex stuff for sure
+//So we will be going through with it as much as speed I can, and move forward with other cool stuff
+//Let's wait till then buddy!!! = no worries for sure
