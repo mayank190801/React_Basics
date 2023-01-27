@@ -1,3 +1,9 @@
 Wrapper Components
 
 Always add key toh list of the components, no matter what! - pretty simple if you ask me brothe
+//So if you want to set dynamic inline styles simply use state features and function onclicl onsubmit or something like that
+//You should be good with working with form and shit and pretty much everything else would be doable
+
+
+//You can change and play with className by making it dyanmic and using backtick and conditions in there
+//Not hard logic, you can figure that out later
