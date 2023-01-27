@@ -1,1 +1,3 @@
 Wrapper Components
+
+Always add key toh list of the components, no matter what! - pretty simple if you ask me brothe

@@ -1,42 +1,42 @@
 import "./Expenses.css";
+import { useState } from "react";
 import { ExpenseItem } from "./ExpenseItem";
 import { Card } from "./Card";
+import ExpensesFilter from "./ExpenseFilter";
 
-const expenses = [
-  {
-    id: "e1",
-    title: "Toilet Paper",
-    amount: 94.12,
-    date: new Date(2020, 7, 14),
-  },
-  { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-  {
-    id: "e3",
-    title: "Car Insurance",
-    amount: 294.67,
-    date: new Date(2021, 2, 28),
-  },
-  {
-    id: "e4",
-    title: "New Desk (Wooden)",
-    amount: 450,
-    date: new Date(2021, 5, 12),
-  },
-];
+export const Expenses = ({ expenses }) => {
+  //Yaha pr map ki jagah filter lga dene ka hai boss simple
+  //Filter by year krne ka hai ka boss!!
+  const [year, setYear] = useState("2021");
+  //on the basis of this year filter all that shit below
+  //So basially that's how it works
+  const filteredArr = expenses.filter((data) => {
+    return data.date.getFullYear() === Number(year);
+  });
 
-export const Expenses = () => {
+  //so maybe now it is working fine
+
   return (
-    <Card className="expenses">
-      {expenses.map((data) => {
-        return (
-          <ExpenseItem
-            key={data.id}
-            title={data.title}
-            date={data.date}
-            amount={data.amount}
-          />
-        );
-      })}
-    </Card>
+    <div>
+      <Card className="expenses">
+        <ExpensesFilter year={year} setYear={setYear} />
+        {filteredArr.length === 0 ? (
+          <h1 style={{ color: "white", alignContent: "center" }}>
+            No Item present
+          </h1>
+        ) : (
+          filteredArr.map((data) => {
+            return (
+              <ExpenseItem
+                key={Math.random()}
+                title={data.title}
+                date={data.date}
+                amount={data.amount}
+              />
+            );
+          })
+        )}
+      </Card>
+    </div>
   );
 };
