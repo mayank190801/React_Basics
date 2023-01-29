@@ -7,3 +7,37 @@ Always add key toh list of the components, no matter what! - pretty simple if yo
 
 //You can change and play with className by making it dyanmic and using backtick and conditions in there
 //Not hard logic, you can figure that out later
+
+//All of this is mostly JavaScript tbh -- closures, React.memo, dependencies and what not brother --- 
+//CRUCIAL TO UNDERSTAND BRUH
+//This comes at some cost ---- cost of comparing the props will be there, so do think about it
+//React.memo()  //if you wrap your function with this shit, then react will only render 
+//if the props, arguments are changed with respect to previous stuff
+//React.memo doesn't work if you are passing an function as a prop because then it will definitely cause greater issues
+//Machine Learning seekhlo bas ab toh bas for fun -- how to train them and shit boi
+
+//Just like kinda useEffect shit for sure -- makes some sense
+const toggleParagraphHandler = useCallback(() => {
+    //does something 
+}, []) ---- here you add dependency for useCallback on when it should be updated ??? -- only when the props inside it changes or updates
+
+//after using useCallback function wrapper we can save rendering and creation our function everytime 
+//the function renders, simple as that ---- 
+//Some closures concept shit is there bruh!! 
+
+//React.memo on the component export
+//usecallback on the function that is keep on updating everytime its component renders 
+
+//useMemo() hook --- let's figure this one out
+const sortedLIst = useMemo(() => {
+    return props.item.sort((a,b) => a - b);
+}, [items]);
+
+//Figure out these above hooks for optimisation and stuff -- later on stuff 
+//this will rebuild only if the items will change --
+
+//CLEARNING concepts
+//Experiment with this one thing brother
+//useEffect will run again if the state inside the same component is updated?? once again
+//and if suppose the parent state is updated, it renders the complete function again, then again useEffect will happen???
+//Figure out these two behavious of useEffect after this lecture please
