@@ -1,0 +1,16 @@
+---- Cheatsheet for REACT ----
+
+- npx create-react-app my-app
+- npm install @mui/material @emotion/react @emotion/styled
+- npm install @mui/icons-material
+
+
+-- component creation --
+- uppercase naming should be done
+- they are basically a function and nothing else buddy
+const ExpenseItem = () => {
+  return <div>Hey there buddy</div>;
+};
+export default ExpenseItem;
+- importing css file inside component
+import "./ExpenseItem.css";
