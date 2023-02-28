@@ -14,3 +14,55 @@ const ExpenseItem = () => {
 export default ExpenseItem;
 - importing css file inside component
 import "./ExpenseItem.css";
+- passing props
+<ExpenseItem title="toilet Paper" name={name} />
+- extracting props
+const ExpenseItem = (props) => {    
+
+-- concept of children props is there (do look into it if you are interested)
+(basically creating wrapper components if you are interested in)
+-- some concepts regarding JSX theory and stuff
+
+- adding functionality on button clicking
+<button onClick={clickHandler}>Change Title</button>
+
+----- useState theory ----
+- you component is a function that returns JSX
+- You never call these functions, but under the hood they are pretty much like function calls!!! 
+- and react never repeats that, simple as that
+- but sometimes you want to render that function again, and for the we use state
+import { useState } from "react";
+const [namer, setNamer] = useState("shitty");
+const clickHandler = () => {
+    setNamer("random");
+};
+- UNDERSTAND IT FULLY
+- this way any change inside the function will re-render all the stuff that was before, simple as that
+- IMPORTANT -- all the variable changes you do which are not state, will be there, but if you wanna see them, you got to update a state variable
+and then you can simply all those values that those variables were having, only the render part is not happening, everything else is!!! How cool is that --- 
+- and only when one state changes, that only instance is called, like if four expenseItem are there
+- only one is going to render again, and print some console log stuff and not any other!!!!! 
+- why using const??? we never know how react is storing that variable, simple as that, react provided the latest state stored
+- react keeps track of when we call the function first time, simple!!! hence initial value is only considered for the first time and nothing else
+
+-- using event functionality in a function --  (simple as that)
+const inputHandler = (event) => {
+    setInputValue(event.target.value);
+    console.log(event.target.value);
+};
+-- you can have mutliple states in a component, simple as that, always remember that
+
+--- One more alternative, using only one state (YOU CAN LEARN IT IF YOU WANT TO)
+
+
+
+
+
+
+
+
+
+
+
+
+
