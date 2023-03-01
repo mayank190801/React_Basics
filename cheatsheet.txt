@@ -189,4 +189,43 @@ const AuthContextProvider = (props) => {
     </AuthContext.Provider>
   );
 };
+- react context is not optimised for high frequency changes 
+- redux is there for better stuff and all!!
+
+
+-- Rules for HOOK --- 
+- (only call react hooks in react functions) - (react components , or custom hooks)
+- only call react hooks at the top level - never inside a callback or any other function
+- use props to make usable component!! Make reusable components brother
+
+-- (STUDY ABOUT FORWARD REFS if you want to) -- in your free time for react and stuff
+
+-- STUDY OPTIMSATION OF REACT AND STUFF IN FREE TIME if you want to!!
+
+--- SENDING HTTP REQUESTS ---
+- connecting to backend and database 
+npm install axios   (one badass library used for multipurposes)
+- this function should be inside some component for sure if you want to use it extensively brother
+const getMovies = async () => {
+  - get data from here, and call that function, simple as that
+  setLoading(true);
+  try {
+    const response = await axios.get("https://swapi.dev/api/films");
+    addMoviesHandler(response.data.results);
+  } catch (err) {
+    console.log(err);
+  }
+  setLoading(false);
+};
+- you can show the loading spinner using setLoading state, as soon as you call the fetch api, simple start loading, pretty cool tho!!!
+- throw new Error('some message'); and catch it and update the state
+- and handle it using states, if some error happened, then it should be not null or something
+- you can use useEffect correctly using some callback functions and shit (STUDY ABOUT IT IN MORE DEPTH IF YOU WANT)
+- study about post request and stuff (STUDY YOU WILL NEED IT FOR AXIOS for sure!!!)
+
+
+
+
+
+
 
