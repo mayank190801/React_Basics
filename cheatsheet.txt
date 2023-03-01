@@ -4,7 +4,6 @@
 - npm install @mui/material @emotion/react @emotion/styled
 - npm install @mui/icons-material
 
-
 -- component creation --
 - uppercase naming should be done
 - they are basically a function and nothing else buddy
@@ -45,24 +44,149 @@ and then you can simply all those values that those variables were having, only 
 - why using const??? we never know how react is storing that variable, simple as that, react provided the latest state stored
 - react keeps track of when we call the function first time, simple!!! hence initial value is only considered for the first time and nothing else
 
--- using event functionality in a function --  (simple as that)
+- using event functionality in a function --  (simple as that)
 const inputHandler = (event) => {
     setInputValue(event.target.value);
     console.log(event.target.value);
 };
--- you can have mutliple states in a component, simple as that, always remember that
+- you can have mutliple states in a component, simple as that, always remember that
 
---- One more alternative, using only one state (YOU CAN LEARN IT IF YOU WANT TO)
+-- One more alternative, using only one state (YOU CAN LEARN IT IF YOU WANT TO) --- 
+-- simply new useState would store some object, and you have to simply manage it and figure it out ---
 
-
-
-
-
-
-
-
-
-
+-- whenever you update an state, which uses the state provided by the previous state, you should be doing this below stuff
+const inputtHanlder = (event) => {
+    setInputValue((prevState) => {
+      return "some value using previous vaue";
+    });
+};
 
 
+--- Removing default behaviour for submitting form (simple)
+const submitHandler = (event) => {
+event.preventDefault();
+
+--- To way binding ---
+<div>
+    <label>Name</label>
+    <input
+        type="text"
+        id="name"
+        value={inputValue}  --- you are giving this value back!! simples (no infininte loop in there)
+        onChange={inputHandler}
+    />
+</div>
+
+--- child to parent communication -- 
+<button onClick={props.normalHandler}>increse count</button>
+(basically passing function to child components, so that we can pass the data up!!)
+
+-- Lifting state up!!!! ---
+--> NewExpense -- data, state is generated here
+--> Expense -- they need to use state!!
+--> App -- Hence they will keep the state!!!!!! How important, close involved component should have it!!
+
+-- Controlled Uncontrolled State Stateless ----  (read it again if you want to!!! Not interested)
+
+
+---- Rendering list and conditional stuff -----
+- simple map also works in here if you want to, it returns these values
+{data.map((cdata) => {
+    return <ExpenseItem name={cdata.name}></ExpenseItem>;
+})}
+-- understanding keys -- (you can read more if you want)
+- rendering keys without performance loss and stuff if you think about it -- 
+- some theory is there, basically react doesn't know much clearly what to update and what not
+- updates all items and shit, which is not at all optimised
+- hence having key makes updates only possible at specific positions
+- bugs could happens as well 
+- key props could be added if you want!!!
+
+--- conditional rendering --- (simple shit)
+{data.length === 0 && <p>Nothing is there</p>}
+{data.length > 0 && data.map((cdata) => {
+    return <ExpenseItem name={cdata.name}></ExpenseItem>;
+})}
+
+
+---- Using return statements inside a component ----
+if (data.length === 0) return <p>Nothing is here</p>;
+  return (
+    <div>
+      {data.length > 0 &&
+        data.map((cdata) => {
+          return <ExpenseItem name={cdata.name}></ExpenseItem>;
+        })}
+    </div>
+);
+
+
+---- react style documents ---- 
+- simply specify states and play with them inside any component!
+<div className={`form-control ${!isValid ? "invalid" : ""}`}
+- (some more stuff is there you can look into it you want to!!!)
+
+
+---- Fragments, Portals, Refs ----
+- Wrapper is a nice little trick to solve this problem! -- simple
+- <React.Fragment> </React.Fragment>
+- Portal is simply rendering your div somewhere else (You can read it in much deeper if you want)  
+- Ref could be used to connect html components! Hence you don't have to keep the state for that
+const nameInputRef = useRef();  
+<input ref={nameInputRef} />
+- input components become uncontrolled because their value is not controlled by react anymore!! Remember that
+
+
+--- Advanced Handling ---
+-- useEffect() ---  (really cool!!!)
+- Like - store data in browser, send http requests, set & manage intervals
+useEffect(() => {}, [dependencies...])
+localStorage.setItem("isLoggedIn", "1");
+useEffect(() => {}, [dependencies...])
+localStorage.setItem("isLoggedIn", "1");
+- useEffect runs for the first time, and everytime its dependencies changes -- simple
+- CLEAN UP FUNCTIONS RUNS BEFORE BEFORE BEFORE THE USE EFFECT FUNCTIONS RUNS -- except the first time it runs
+useEffect(() => {
+    setTimeout(() => {
+      setNormal("random");
+    }, 500); 
+    return () => {};  //this is the cleanup function
+});
+- some cool timeout and cleanTime stuff is used (If you are interested go deeper into it brother)
+
+
+-- useReducer() ---  (if you want to figure it out a bit more)
+const [password, setPassword] = useReducer(emailReducer, initial_value);
+- then you use dispatcher and stuff if you want -- (some really cool stuff is happening for sure)
+
+-- useContextAPI() ---  (important)
+- this creates app wise state management which is pretty cool for sure
+const ctx = useContext(AuthContext);
+<AuthContext.Provider
+      value={{
+          isLoggedIn: true,
+        }}
+>
+</AuthContext>
+-- creating this inside store folder for your use case only!
+import React from "react";
+const AuthContext = React.createContext({
+  isLoggedIn: false,
+});
+export default AuthContext;
+- add other functions in here as well, for auto-completion
+- You can create complete stuff inside auth-context, from setting up to state and writing functions
+- and ofc use the above shit, view revision section and you would know how to do this if you want to in future
+const AuthContextProvider = (props) => {
+ return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLogged,
+        onLogout: logoutHandler,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
 

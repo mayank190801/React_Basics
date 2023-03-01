@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  //creating inside functions simple as that
-  //playing and learning as much as I can about useState
+  //working iw th
 
   let count = 0;
   const [namer, setNamer] = useState("shitty");
