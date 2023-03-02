@@ -223,8 +223,26 @@ const getMovies = async () => {
 - you can use useEffect correctly using some callback functions and shit (STUDY ABOUT IT IN MORE DEPTH IF YOU WANT)
 - study about post request and stuff (STUDY YOU WILL NEED IT FOR AXIOS for sure!!!)
 
-
-
+--- CUSTOM HOOKS --- 
+const useCounter = () => {
+  const [counter, setCounter] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prevCounter) => prevCounter + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return counter;
+};
+-- simple custom hooks which returns count which have these features, you are returning it using it anywhere you want
+- you can customise custom hooks on the basis of what the props you are adding to them!!
+- (try to exactly understand what the above function is doing basically)
+- GOT IT, so basically useEffect only happens once, but this setInterval shit keeps happening again and again
+- and once this component is unmounted, it will simply clear this timeout which is happening!! (pretty cool)
+- YOU CAN LOOK INTO CUSTOM HTTP HOOKS IF YOU WANT TO!!! (or see how they are doing, whatever you like brother) -- custom hooks toh aagye samajh
+- THE ABOVE SHIT COULD BE REALLY USEFUL FOR THE WEBSITE IF YOU THINK ABOUT IT!!! (not bad not bad!!)
+- {method, headers, body} -- for post request maybe
+- useCallback is dope ass shit!! (do get used to this brother, please)
 
 
 

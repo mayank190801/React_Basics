@@ -1,6 +1,8 @@
 import axios from "axios";
 
 const Button = ({ addMoviesHandler }) => {
+  //while I am getting data, I can try to make things happens on my own choice as well
+  //If you think about it brother!!! (think think)
   const getMovies = async () => {
     //get data from here, and call that function, simple as that
     try {

@@ -4,6 +4,7 @@ import ExpenseItem from "./components/ExpenseItem";
 import ExpenseList from "./components/ExpenseList";
 import MoviesList from "./components/MoviesList";
 import NewExpense from "./components/NewExpense";
+import useCounter from "./hooks/use-counter";
 import AuthContext from "./store/auth-context";
 
 function App() {
@@ -43,12 +44,16 @@ function App() {
     });
   };
 
+  //creating custom hooks
+  const counter = useCounter();
+
   return (
     <div>
       <NewExpense />
       <ExpenseList data={data} />
       <Button addMoviesHandler={addMoviesHandler} />
       <MoviesList movies={movies} />
+      {counter}
     </div>
   );
 }
