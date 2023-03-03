@@ -2,8 +2,6 @@ import { useState } from "react";
 import "./ExpenseItem.css";
 
 const ExpenseItem = (props) => {
-  //working iw th
-
   let count = 0;
   const [namer, setNamer] = useState("shitty");
   const clickHandler = () => {

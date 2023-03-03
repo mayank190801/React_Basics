@@ -6,6 +6,43 @@ import MoviesList from "./components/MoviesList";
 import NewExpense from "./components/NewExpense";
 import useCounter from "./hooks/use-counter";
 import AuthContext from "./store/auth-context";
+import RootLayout from "../src/components/RootLayout";
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements,
+} from "react-router-dom";
+import HomePage from "../src/pages/Home";
+import ProductsPage, { loader as ProductsLoader } from "../src/pages/Products";
+import Error from "./pages/Error";
+import ProductDetail from "./pages/ProductDetail";
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <RootLayout />,
+//     errorElement: <Error />,
+//     children: [
+//       { path: "/", element: <HomePage /> },
+//       { path: "/products", element: <ProductsPage /> },
+//       { path: "/products/:productId", element: <ProductDetail /> },
+//     ],
+//   },
+// ]);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "products", element: <ProductsPage />, loader: ProductsLoader },
+      { path: "products/:productId", element: <ProductDetail /> },
+    ],
+  },
+]);
 
 function App() {
   const name = "Singh";
@@ -46,16 +83,15 @@ function App() {
 
   //creating custom hooks
   const counter = useCounter();
-
-  return (
-    <div>
-      <NewExpense />
-      <ExpenseList data={data} />
-      <Button addMoviesHandler={addMoviesHandler} />
-      <MoviesList movies={movies} />
-      {counter}
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
+
+// <div>
+// <NewExpense />
+// <ExpenseList data={data} />
+// <Button addMoviesHandler={addMoviesHandler} />
+// <MoviesList movies={movies} />
+// {counter}
+// </div>
 
 export default App;

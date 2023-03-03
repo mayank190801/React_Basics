@@ -244,6 +244,129 @@ const useCounter = () => {
 - {method, headers, body} -- for post request maybe
 - useCallback is dope ass shit!! (do get used to this brother, please)
 
+--- ROUTING --- 
+- defining routes -- | first step |
+npm install react-router-dom
+- create pages folder and add Home component in there
+const router = createBrowserRouter([
+  { path: "/", element: <HomePage /> },
+  { path: "/products", element: <ProductsPage /> },
+]);
+return <RouterProvider router={router} />;
+- One more approach is there, which was used before 6.4 and stuff, if you want you can look into it (pretty similar)
+- for navigating between the pages, this could be used
+<Link to="/products">product page!</Link>
+- parent element ke andar routees chle?? Wrapper for all routes, how to do that?
+- Some dope level nesting routes!!
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/products", element: <ProductsPage /> },
+    ],
+  },
+]);
+const RootLayout = () => {
+  return (
+    <div>
+      Hey there buddy
+      <div>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+- error pages and stuff
+errorElement: <Error />,
+- (NavLink study more deeper about if you want) - if you want you can add those in here bruh! 
+- programmatically navigate between pages, you can use 
+useNavigate() hook could be used 
+const navigate = useNavigate();
+const changeNavigate = () => {
+  navigate("/products");  
+};
+-- params --
+{ path: "/products/:productId", element: <ProductDetail /> },
+const params = useParams();
+<p>{params.productId}</p>
+<Link to="/products/product-1">Product 1</Link>
+-- relative path and absolute paths!!
+-- relative pathing is used in below stuff, otherwise normally its absolute path
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <Error />,
+    children: [
+      { path: "", element: <HomePage /> },
+      { path: "products", element: <ProductsPage /> },
+      { path: "products/:productId", element: <ProductDetail /> },
+    ],
+  },
+]);
+<Link to=".." relative="path"> (if you are facing some issues with path you can check this out) - relative and absolute paths differences, simple
+-- index routes, default route -- simple
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <Error />,
+    children: [
+      { index: true, element: <HomePage /> },
+      { path: "products", element: <ProductsPage /> },
+      { path: "products/:productId", element: <ProductDetail /> },
+    ],
+  },
+]);
 
 
+--- useLoader ---- 
+- basically loading data before going to that route, so you will have
+the data way before reaching that route! -> Hence no time wasted in loading and stuff
+- You can make loader inside the routes, make the async function and all
+- all the routes at that level or below that level will be able to access that data using useLoaderData() hook
+{ path: "products", element: <ProductsPage />, loader: ProductsLoader },
+const events = useLoaderData();
+export const loader = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/events");
+    console.log(response);
+    return response.data.events;
+  } catch (err) {
+    return "";
+  }
+};
+-- use setTimeout() feature to showcase delay and everything! (not so bad bruh!!)
+- one you will click on that route, then only data will be first fetched
+then that page will be loaded, good thing is we will have all the data once we reach there
+downside being that we would have to wait sometimes if data fetching did take some time!!!
+- useNavigation() hook can be used, to show different states on the current page!! (YOU CAN STUDY ABOUT IT IF YOU WANT TO)
+- You can not use hooks in loader function!! (EVERYTHING ELSE -- yes)
+if(data.isError) -- for checking if data has that property or not, simple
+-- error handling using loader --  (works!)
+export const loader = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/events");
+    if (!response.ok) {
+      throw { message: "could not fetch data" };
+    } else {
+      return response.data.events;
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+- you can set errorElement inside routing, and it will take you there!
+-> useRouteError, and Responses (YOU CAN STUDY IF YOU WANT TO)
 
+-- JSON utility function -- 
+json function automatically parse object to JSON format, while using these useRouteError and etc feature,
+would have to go much deeper into it! But whatever bruh!
+- so basically loaders can be dyanamic as well 
+loader({request, params}){
+  fetch("url" + params.eventId)
+}
+- Hence as you can see above, request and params are there whenever a loader function is created, you can use this
+for making dynamic shit
