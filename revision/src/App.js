@@ -17,6 +17,7 @@ import HomePage from "../src/pages/Home";
 import ProductsPage, { loader as ProductsLoader } from "../src/pages/Products";
 import Error from "./pages/Error";
 import ProductDetail from "./pages/ProductDetail";
+import FormsPractise from "./pages/FormsPractise";
 
 // const router = createBrowserRouter([
 //   {
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "products", element: <ProductsPage />, loader: ProductsLoader },
       { path: "products/:productId", element: <ProductDetail /> },
+      { path: "practise", element: <FormsPractise /> },
     ],
   },
 ]);

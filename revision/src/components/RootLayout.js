@@ -9,11 +9,7 @@ const RootLayout = () => {
 
   return (
     <div>
-      Hey there buddy
-      <div>
-        <Outlet />
-      </div>
-      <button onClick={changeNavigate}>Navigate to products Page</button>
+      <Outlet />
     </div>
   );
 };

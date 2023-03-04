@@ -370,3 +370,76 @@ loader({request, params}){
 }
 - Hence as you can see above, request and params are there whenever a loader function is created, you can use this
 for making dynamic shit
+- for the routes which does not have loader, they can access parent loaders using useRouterLoaderData()  (IMPORTANT)
+- Some id and shit have to be configured, look into it more if you want that!
+
+-- SO Basically what I am getting is 
+- when we want to load data, we do all those lengthy and big ass steps, where as we could use loaders right?
+- similary when we want to send the form data, we can use those double binding, ref, and what not! But there is a better option - action! (look into it)
+-- you can handle FORM submission using action! (IF YOU WANT TO)
+- some detailed steps are there, FORM component, redirect, request for data from from in action
+- use json also if you want to! All upto you brother! -- think and work on it! (whichever you like)
+- action="/asdjflada/alkfdj" (inside form can trigger action of some other route/componet!)
+
+- while deleting something, you can pop up a window on browser (how cool is that)
+const proceed = window.confirm("Are you sure?");
+if(proceed){ //code }else{ //code }
+
+- If you want to tell when to submit on the button click, you could use that feature
+- useSubmit() -- and then submit({data}, {method : "delete"}) -- otherwise it was all happening and calling the button on the click of the button!! (think about it)
+- Pragammatically is pretty cool!
+
+- You can set submitting feedback button!! (not bad not bad) -- just using useNavigation for feedback and stuff
+- when you will submit it, then at that moment useNavigation value will be changed and you can update shit for the small duration of time!!
+
+- Validation can be done as well with action, basically is response is not what you want, you can useActionData() and update the UI of the page
+- Pretty much validation from backend can be shown and shit!! (which would be pretty useful for sure!!) -- Action are pretty cool for real!!! (not gonna lie!)
+- You can reuse action, by modifying the code to be reusable, and two people can use one action! (LOOK INTO IT IF YOU WANT TO)
+- FETCHER is there ( --- YOU CAN LEARN MORE ABOUT IF YOU WANT TO BROTHER --- )
+- DEFER (not in the mood to learn right now, check it out much later on!)
+
+
+----- FORMS AND SUBMISSION -----
+- till now best 2 ways were using ref or double binding!
+- below code mention both of them cleanly!! look into it, and it's not ideal because we are manipulating the DOM and not react!!! (NOT IDEAL)
+const FormsPractise = () => {
+  const nameInputRef = useRef();
+  const [enteredName, setEnteredName] = useState();
+  const updateNameHandler = (event) => {
+    setEnteredName(event.target.value);
+  };
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
+    const enteredValue = nameInputRef.current.value;
+    // nameInputRef.current.value = ""; ==> NOT IDEAL BROTHER!!
+    setEnteredName("");
+  };
+  return (
+    <form onSubmit={formSubmissionHandler}>
+      <div>
+        <label htmlFor="name"> Your name</label>
+        <input
+          ref={nameInputRef}
+          type="text"
+          id="name"
+          onChange={updateNameHandler}
+          value={enteredName}
+        />
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+  );
+};
+export default FormsPractise;
+- You can add validation using these two (VALIDATION)
+const [enteredName, setEnteredName] = useState();  
+const [enteredNameTouched, setEnteredNameTouched] = useState(false);
+- methods
+onBlur   
+onClick
+- simply if you don't want anyone to click this button
+<button disabled={true}>Submit</button>  
+- making use-input custom hook (and basically write less code, simple!)
+

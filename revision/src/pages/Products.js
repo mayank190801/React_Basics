@@ -3,6 +3,12 @@ import { Link, useLoaderData, json } from "react-router-dom";
 
 const Products = () => {
   const events = useLoaderData();
+  console.log(events);
+
+  const startDeleteHandler = () => {
+    const proceed = window.confirm("Are you sure?");
+    console.log(proceed);
+  };
 
   return (
     <div>
@@ -19,6 +25,7 @@ const Products = () => {
           <Link to="/products/product-3">Product 3</Link>
         </li>
       </ul>
+      <button onClick={startDeleteHandler}> Are you sure? </button>
     </div>
   );
 };
@@ -28,13 +35,8 @@ export default Products;
 //loader and shit!
 export const loader = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/eventss");
-
-    if (!response.ok) {
-      throw { message: "could not fetch data" };
-    } else {
-      return response.data.events;
-    }
+    const response = await axios.get("http://localhost:8080/events");
+    return response.data.events;
   } catch (err) {
     throw err;
   }
