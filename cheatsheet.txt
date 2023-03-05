@@ -443,3 +443,53 @@ onClick
 <button disabled={true}>Submit</button>  
 - making use-input custom hook (and basically write less code, simple!)
 
+
+
+MUI stuff 
+
+------ TYPOGRAPHY -----
+- variant provided by MUI
+- componenet we provided
+- gutterBottom is margin below
+<Typography variant='h1' component='h1' gutterBottom></Typography>
+
+------ BUTTON -----
+- want to grap less attention
+<Button variant='text' color='primary'></Button>  
+- highest attention
+<Button variant='contained'></Button>
+- medium attention
+<Button variant='outlined'></Button>
+
+- using icons with buttons 
+<Stack spacing={2} direction='row'>
+  <Button startIcon={<random/>} ></Button>
+  <IconButton><SendIcon/></IconButton>
+  <Button></Button>
+  <Button></Button>
+</Stack>
+
+- some more properties regarding buttons
+- disableElevation (set elevation on button)
+- disableRipple (ripple effect is removed)
+
+--- TOGGLE BUTTON ---  
+- complete process of how to set handlers on it as well! (pretty cool)
+
+--- TextFields --- 
+<TextField label ="name" variant="outlined" /> 
+<TextField label ="name" variant="filled" /> 
+<TextField label ="name" variant="standard" required/> 
+<TextField label ="name" variant="standard" type='password' required/> 
+<TextField label ="name" variant="filled" helperText="add this"/> 
+ 
+----- SELECT component ----
+look into the video
+
+----- RADIO BUTTON ----
+look in the video
+
+----- CHECKBOX BUTTON ----
+look in the video
+
+
